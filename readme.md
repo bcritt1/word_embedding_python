@@ -8,8 +8,8 @@ directory of
 
 The files consist of:
 
-1. [embedding.py](/scripts/word_embedding/python/embedding.py): Runs word2vec on a corpus, outputing a gensim model file for all the words in your corpus.
-2. [embedding.sbatch](/scripts/word_embedding/python/embedding.sbatch): Creates a batch job for embedding.py.
+1. [embedding.py](embedding.py): Runs word2vec on a corpus, outputing a gensim model file for all the words in your corpus.
+2. [embedding.sbatch](embedding.sbatch): Creates a batch job for embedding.py.
 
 ## Usage instructions
 
@@ -30,31 +30,21 @@ ssh yourSUNetID@sherlock.stanford.edu
 ```
 ### File Management
 
-3. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
+3. Once you are logged in, you'll want to have access to these files:
 ```
-ml system subversion
+git clone https://github.com/bcritt1/word_embedding_python.git
 ```
-and use that program to download the files:
-```
-svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/word_embedding/python/ word_embedding
-```
-This will create a directory in your home space on Sherlock called "word_embedding" with all the files in this repository.
+This will grab all these files and put them in a directory called "word_embedding_python". Once you have the directory, you can ```ls``` to verify it's there.
 
-Once you have the directory--you can ```ls``` to verify it's there--
-```
-ml purge
-```
-to remove subversion from your environment. 
-
-3. Let's also make three directories for the outputs of our process:
+4. Let's also make three directories for the outputs of our process:
 ```
 mkdir out err /scratch/users/$USER/outputs
 ```
 ### Running Code
 
-4. Now, let's move into our new directory
+5. Now, let's move into our new directory
 ```
-cd word_embedding
+cd word_embedding_python
 ```
 and submit our sbatch file to slurm, Sherlock's job scheduler: 
 ```
