@@ -1,12 +1,9 @@
 # import libraries
-import nltk
-from nltk.tokenize import sent_tokenize
-from nltk.tokenize.treebank import TreebankWordTokenizer
-nltk.download('punkt')
-
+import ssl
+import os
+import gensim
 
 # This may or may not be necessary for you. Gives python permission to access the internet so we can download libraries.
-import ssl
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -14,10 +11,15 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
+#these need to be imported later due to ssl issues
+import nltk
+nltk.download('all')
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize.treebank import TreebankWordTokenizer
+
 # Read in a directory of txt files as the corpus using the os library.
-import os
 user = os.getenv('USER')
-corpusdir = '/farmshare/learning/data/emerson/'
+corpusdir = '/farmshare/learning/data/emerson/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -49,7 +51,6 @@ sentences = make_sentences(corpus)
 #with open("data.json", "r") as read_file:
 #    data = json.load(read_file)
 
-import gensim
 
 """The syntax of the next statement is as follows:
 
